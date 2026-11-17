@@ -1,0 +1,132 @@
+# 用 XcodeGen 在云端 Mac 上生成 Xcode 工程（本机是 Windows，不提交 .xcodeproj）
+# 上架前只需要改 APP_ID（和苹果后台登记的 Bundle ID 一致）
+name: BanLi
+options:
+  deploymentTarget:
+    iOS: "17.0"
+  developmentLanguage: zh-Hans
+settings:
+  base:
+    APP_ID: com.hgsldswk.banli
+    # App 在 App Store Connect 建好后，把数字 ID 填这里（分享图会出现下载二维码）
+    APP_STORE_ID: "6833913293"
+    MARKETING_VERSION: "1.1"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    CODE_SIGN_STYLE: Automatic
+    TARGETED_DEVICE_FAMILY: "1"
+targets:
+  BanLi:
+    type: application
+    platform: iOS
+    sources:
+      - BanLi
+      - Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_ID)
+        TARGETED_DEVICE_FAMILY: "1"  # XcodeGen 默认 1,2 会盖掉项目级设置，必须写在 target 上
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+      configs:
+        # 上架打包用手动签名：发布证书 + ci/profiles 里的 App Store 描述文件（ci/asc_profiles.py 生成）
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: Apple Distribution
+          PROVISIONING_PROFILE_SPECIFIER: BanLi AppStore 202611130106
+    info:
+      path: BanLi/Info.plist
+      properties:
+        CFBundleDisplayName: 班历
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDevelopmentRegion: zh-Hans
+        UILaunchScreen: {}
+        UIRequiresFullScreen: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        ITSAppUsesNonExemptEncryption: false
+        NSSupportsLiveActivities: true
+        NSAlarmKitUsageDescription: 按你的班次设置闹钟，在上班前准时响铃。
+        NSLocationWhenInUseUsageDescription: 用你所在城市的天气，提醒上下班带伞、加衣。位置只用来查天气，不会上传或保存。
+        BanLiAppGroup: group.$(APP_ID)
+        BanLiProProductID: $(APP_ID).pro
+        BanLiAppStoreID: $(APP_STORE_ID)
+    entitlements:
+      path: BanLi/BanLi.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.$(APP_ID)
+        com.apple.developer.weatherkit: true
+    dependencies:
+      - target: BanLiWidget
+  BanLiWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - BanLiWidget
+      - Shared
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_ID).widget
+        TARGETED_DEVICE_FAMILY: "1"  # XcodeGen 默认 1,2 会盖掉项目级设置，必须写在 target 上
+      configs:
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: Apple Distribution
+          PROVISIONING_PROFILE_SPECIFIER: BanLi Widget AppStore 202611130106
+    info:
+      path: BanLiWidget/Info.plist
+      properties:
+        CFBundleDisplayName: 班历
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDevelopmentRegion: zh-Hans
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+        BanLiAppGroup: group.$(APP_ID)
+        BanLiProProductID: $(APP_ID).pro
+    entitlements:
+      path: BanLiWidget/BanLiWidget.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.$(APP_ID)
+  BanLiTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - BanLiTests
+      - path: Shared
+        excludes:
+          - "*.xcprivacy"
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_ID).tests
+        GENERATE_INFOPLIST_FILE: YES
+  BanLiUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - BanLiUITests
+    dependencies:
+      - target: BanLi
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: $(APP_ID).uitests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: BanLi
+schemes:
+  BanLiUI:
+    build:
+      targets:
+        BanLi: all
+        BanLiUITests: [test]
+    test:
+      targets:
+        - BanLiUITests
+  BanLi:
+    build:
+      targets:
+        BanLi: all
+    test:
+      targets:
+        - BanLiTests
