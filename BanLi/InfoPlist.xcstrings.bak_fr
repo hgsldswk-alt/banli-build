@@ -1,0 +1,147 @@
+{
+  "sourceLanguage": "zh-Hans",
+  "strings": {
+    "CFBundleDisplayName": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "班历"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ShiftCal"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "班曆"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "班歴"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ShiftCal"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ShiftCal"
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ShiftCal"
+          }
+        }
+      }
+    },
+    "NSLocationWhenInUseUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "用你所在城市的天气，提醒上下班带伞、加衣。位置只用来查天气，不会上传或保存。"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your location is used to fetch local weather for umbrella and clothing tips around your shifts. It is never stored or shared with the developer."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "依據當地天氣，提醒上下班帶傘、添衣。位置僅用於查詢天氣，不會儲存或分享給開發者。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "シフト前後の傘や服装のヒントのため、現在地の天気を取得します。位置情報は保存されず、開発者に送信されることもありません。"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dein Standort wird verwendet, um das lokale Wetter für Schirm- und Kleidungstipps rund um deine Schichten abzurufen. Er wird nie gespeichert oder an den Entwickler weitergegeben."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu ubicación se usa para obtener el tiempo local y darte consejos de paraguas y ropa según tus turnos. Nunca se guarda ni se comparte con el desarrollador."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sua localização é usada para obter o tempo local e dar dicas de guarda-chuva e roupa conforme seus turnos. Nunca é armazenada nem compartilhada com o desenvolvedor."
+          }
+        }
+      }
+    },
+    "NSAlarmKitUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "按你的班次设置闹钟，在上班前准时响铃。"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schedule alarms for your shifts so they ring before work."
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "依你的班次設定鬧鐘，在上班前準時響鈴。"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "勤務前に鳴るよう、シフトのアラームを設定します。"
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stell Wecker für deine Schichten, damit sie vor der Arbeit klingeln."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Programa alarmas para tus turnos para que suenen antes del trabajo."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agende alarmes para seus turnos para que toquem antes do trabalho."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
